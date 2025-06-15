@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Create New Account</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #fdf6f2;
+    }
+
+    .account-form {
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 400px;
+      height: 70vh;
+      overflow-y: auto;
+      animation: fadeIn 0.5s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .account-form h2 {
+      margin-bottom: 20px;
+      color: #333;
+      text-align: center;
+    }
+
+    .account-form label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+      color: #555;
+    }
+
+    .account-form input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 16px;
+    }
+
+    .account-form input:focus {
+      outline: none;
+      border-color: #fd7e14;
+    }
+
+    .account-form button {
+      width: 100%;
+      padding: 12px;
+      background-color: #fd7e14;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .account-form button:hover {
+      background-color: #e96b06;
+    }
+
+    .password-criteria {
+      color: red;
+      font-size: 0.9em;
+      margin-bottom: 10px;
+    }
+
+    .google-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #db4437;
+      color: white;
+      padding: 10px;
+      border: none;
+      border-radius: 4px;
+      margin: 15px 0;
+      cursor: pointer;
+      text-decoration: none;
+      font-size: 16px;
+      text-align: center;
+      transition: background-color 0.3s;
+    }
+
+    .google-btn:hover {
+      background-color: #c23321;
+    }
+
+    .crea {
+      margin-top: 10px;
+      text-align: center;
+    }
+
+    .crea a {
+      color: #fd7e14;
+      text-decoration: none;
+    }
+
+    .crea a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+
+<body>
+  <form class="account-form" id="accountForm">
+    <h2>Create New Account</h2>
+
+    <label for="fullname">Full Name</label>
+    <input type="text" id="fullname" name="fullname" placeholder="Fullname" required />
+
+    <label for="email">Email</label>
+    <input type="email" id="email" name="email" placeholder="email" required />
+
+    <label for="username">Username</label>
+    <input type="text" id="username" name="username" placeholder="username" required />
+
+    <label for="password">Password</label>
+    <input type="password" id="password" name="password" required />
+
+    <div class="password-criteria" id="passwordCriteria">
+      <p>Password must be at least 8 characters long, contain one uppercase letter, one lowercase letter, and one number.</p>
+    </div>
+
+    <label for="confirm-password">Confirm Password</label>
+    <input type="password" id="confirm-password" name="confirm-password" required />
+
+    <button type="submit">Create Account</button>
+
+    <a href="#" class="google-btn">Continue with Google</a>
+
+    <div class="crea">
+      <p>Already have an account? <a href="https://chandunulu.github.io/loginform/">Login</a></p>
+    </div>
+  </form>
+
+  <script>
+    document.getElementById('accountForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const fullName = document.getElementById('fullname').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const username = document.getElementById('username').value.trim();
+      const password = document.getElementById('password').value;
+      const confirmPassword = document.getElementById('confirm-password').value;
+
+      const passwordCriteria = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
+
+      if (!passwordCriteria.test(password)) {
+        alert('Password does not meet the criteria.');
+        return;
+      }
+
+      if (password !== confirmPassword) {
+        alert('Passwords do not match.');
+        return;
+      }
+
+      alert('Account created successfully! Going back to the previous page...');
+      window.history.back(); 
+    });
+  </script>
+</body>
+
+</html>
